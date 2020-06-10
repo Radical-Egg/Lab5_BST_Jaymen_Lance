@@ -35,12 +35,12 @@ void Currency::setCoinValue(int coinValue)
 
 std::string Currency::getNoteName() const
 {
-	return " ";
+	return "Note";
 }
 
 std::string Currency::getCoinName() const
 {
-	return " ";
+	return "Coin";
 }
 
 bool Currency::isMatchingCurrency(Currency const &currency) const
@@ -152,20 +152,29 @@ std::istream& operator >> (std::istream &input, Currency &currency)
 	int noteValue;
 	int coinValue;
 
-	if (input >> noteValue >> coinValue)
+	while (!input.eof())
 	{
-		currency.noteValue = noteValue;
-		currency.setCoinValue(coinValue);
-		return input;
+		//input >> noteValue >> coinValue;
+		if(!(input >> noteValue >> coinValue))
+		{
+			std::cout << "error" << std::endl;
+			input.clear();
+			input.ignore(100000, '\n');
+		}
+		else
+		{
+			currency.noteValue = noteValue;
+			currency.setCoinValue(coinValue);
+			return input;
+		}
+		
+
 	}
-	else
-	{
-		throw std::runtime_error("Non-integer values used.");
-	}
+	return input;
 }
 
 std::ostream& operator << (std::ostream &output, Currency const &currency)
 {
-	output << currency.getNoteName() << " " << currency.noteValue << " " << currency.coinValue << " " << currency.getCoinName();
+	output << currency.getNoteName() << " " << currency.noteValue << " " << currency.coinValue << " " << currency.getCoinName() << std::endl;
 	return output;
 }

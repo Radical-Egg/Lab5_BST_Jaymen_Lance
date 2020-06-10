@@ -290,7 +290,7 @@ void BST<T>::printNodesDepthFirstRecur(BSTNode<T>*& nodeStart, int order)
 
 	if (order <= 1)
 	{
-		cout << nodeStart->data << " ";
+		std::cout << nodeStart->data << " ";
 	}
 
 	if (nodeStart->left != nullptr)
@@ -300,7 +300,7 @@ void BST<T>::printNodesDepthFirstRecur(BSTNode<T>*& nodeStart, int order)
 
 	if (order == 2)
 	{
-		cout << nodeStart->data << " ";
+		std::cout << nodeStart->data << " ";
 	}
 
 	if (nodeStart->right != nullptr)
@@ -310,7 +310,7 @@ void BST<T>::printNodesDepthFirstRecur(BSTNode<T>*& nodeStart, int order)
 
 	if (order == 3)
 	{
-		cout << nodeStart->data << " ";
+		std::cout << nodeStart->data << " ";
 	}
 }
 
@@ -402,25 +402,25 @@ void BST<T>::clearTree()
 template<typename T>
 void BST<T>::printDataInOrder()
 {
-	cout << "[ ";
+	std::cout << "[ ";
 	printNodesDepthFirstRecur(start, 2);
-	cout << "]" << std::endl;
+	std::cout << "]" << std::endl;
 }
 
 template<typename T>
 void BST<T>::printDataPreOrder()
 {
-	cout << "[ ";
+	std::cout << "[ ";
 	printNodesDepthFirstRecur(start, 1);
-	cout << "]" << std::endl;
+	std::cout << "]" << std::endl;
 }
 
 template<typename T>
 void BST<T>::printDataPostOrder()
 {
-	cout << "[ ";
+	std::cout << "[ ";
 	printNodesDepthFirstRecur(start, 3);
-	cout << "]" << std::endl;
+	std::cout << "]" << std::endl;
 }
 
 template<typename T>
@@ -431,12 +431,12 @@ void BST<T>::printDataBreadthFirst()
 		Queue<BSTNode<T>*>* q = new Queue<BSTNode<T>*>();
 		q->enQueue(start);
 
-		cout << "[ ";
+		std::cout << "[ ";
 		while (!q->isListEmpty())
 		{
 			BSTNode<T>* curNode = q->deQueue();
 			T curData = curNode->data;
-			cout << curData << " ";
+			std::cout << curData << " ";
 
 			if (curNode->left != nullptr)
 			{
@@ -447,7 +447,7 @@ void BST<T>::printDataBreadthFirst()
 				q->enQueue(curNode->right);
 			}
 		}
-		cout << "]" << std::endl;
+		std::cout << "]" << std::endl;
 
 		delete q;
 	}
