@@ -172,8 +172,6 @@ std::istream& operator >> (std::istream &input, Currency &currency)
 			currency.setCoinValue(coinValue);
 			return input;
 		}
-		
-
 	}
 	return input;
 }
@@ -190,3 +188,4 @@ std::ostream& operator << (std::ostream &output, Currency const &currency)
 
 	return output;
 }
+
