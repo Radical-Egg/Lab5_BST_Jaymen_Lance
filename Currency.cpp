@@ -11,6 +11,7 @@
 */
 
 #include "Currency.h"
+#include <fstream>
 
 int Currency::getNoteValue() const
 {
@@ -157,7 +158,11 @@ std::istream& operator >> (std::istream &input, Currency &currency)
 		//input >> noteValue >> coinValue;
 		if(!(input >> noteValue >> coinValue))
 		{
-			std::cout << "error" << std::endl;
+			std::ofstream log;
+			log.open("log.txt", std::ios::app);
+			std::cout << "Error, skipping invalid data!" << std::endl;
+			log << "Error, skipping invalid data!" << std::endl;
+			log.close();
 			input.clear();
 			input.ignore(100000, '\n');
 		}
@@ -176,5 +181,12 @@ std::istream& operator >> (std::istream &input, Currency &currency)
 std::ostream& operator << (std::ostream &output, Currency const &currency)
 {
 	output << currency.getNoteName() << " " << currency.noteValue << " " << currency.coinValue << " " << currency.getCoinName() << std::endl;
+	std::ofstream log;
+	log.open("log.txt", std::ios::app);
+
+	log << currency.getNoteName() << " " << currency.noteValue << " " << currency.coinValue << " " << currency.getCoinName() << std::endl;
+
+	log.close();
+
 	return output;
 }

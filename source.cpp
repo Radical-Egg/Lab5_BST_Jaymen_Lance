@@ -7,6 +7,7 @@
 #include "Currency.h"
 
 
+const int SIZE = 10;
 
 using namespace std;
 
@@ -19,71 +20,45 @@ void print(Currency *myDollar)
 }
 void read(Currency *myDollar)
 {
+    // file
     ifstream inFile;
 
-    inFile.open("data.txt");
+    // file path
+    std::string file_path;
+
+    // get file path
+    std::cout << "Enter file path: " << std::endl;
+    getline(cin, file_path);
+
+    // open then file
+    inFile.open(file_path);
 
     for (int i = 0; i < 10; i++)
     {
        inFile >> (*(myDollar + i));
     }
-    inFile.close();
+    inFile.close(); // close file
 }
-
 int main()
 {
-    Currency* myCurrency = new Currency[10];
+    // currency objects
+    Currency* myCurrency = new Currency[SIZE];
 
     read(myCurrency);
     print(myCurrency);
 
-    BST<Currency> myBST(myCurrency[0]);
+    BST<Currency>* myBST = new BST<Currency>();
+
+    for (int i = 0; i < SIZE; i++)
+    {
+        myBST->insert(myCurrency[i]);
+    }
+
+    myBST->printDataInOrder();
+    myBST->printDataBreadthFirst();
+    myBST->printDataPostOrder();
+    myBST->printDataPreOrder();
+    
     return 0;
 }
-
-/*
-int main()
-{
-    Dollar* myDollar = new Dollar[10];
-
-    read(myDollar);
-    print(myDollar);
-
-
-    BST<Dollar> myBST(myDollar[0]);
-
-    for (int i = 0; i < 10; i++)
-    {
-        myBST.insert(myDollar[i]);
-    }
-
-    myBST.printDataInOrder();
-
-    bool flag = true;
-
-    char x;
-    cout << " A. Add\n B. Search \n C. Delete" << endl;
-    cin >> x;
-
-    switch(x)
-    {
-        // add
-        case 'A':
-            Dollar* addDollar = new Dollar();
-            Dollar test;
-            cout << "Enter dollar value (format dollar 24 15 cent): ";
-            cin >> addDollar;
-            myBST.insert(addDollar[0]);
-            cout << addDollar[0] << "Has been added to the BST! " << endl;
-            delete addDollar;
-            myBST.printDataInOrder();
-            break;
-    }
-
-    delete[] myDollar;
-    //cout << myDollar[1];
-
-}
-*/
-
 
