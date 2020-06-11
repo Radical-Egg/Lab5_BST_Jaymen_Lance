@@ -156,20 +156,25 @@ std::istream& operator >> (std::istream &input, Currency &currency)
 	while (!input.eof())
 	{
 		//input >> noteValue >> coinValue;
-		if(!(input >> noteValue >> coinValue))
+		if(!(input >> noteValue >> coinValue)) // reading from file
 		{
-			std::ofstream log;
-			log.open("log.txt", std::ios::app);
-			std::cout << "Error, skipping invalid data!" << std::endl;
-			log << "Error, skipping invalid data!" << std::endl;
-			log.close();
+			std::ofstream log; // creating log file
+			log.open("log.txt", std::ios::app); // opening to append
+			std::cout << "Error, skipping invalid data!\n" << std::endl; // skipping invalid data
+			log << "Error, skipping invalid data!" << std::endl; // logging invalid data skip
+			log.close(); // close file
+			//clear buffer
 			input.clear();
 			input.ignore(100000, '\n');
 		}
 		else
 		{
+			// assign data to currency object
 			currency.noteValue = noteValue;
 			currency.setCoinValue(coinValue);
+
+			// let the user know the object has been created
+			std::cout << "The following object has been created: " << currency << std::endl;
 			return input;
 		}
 	}
