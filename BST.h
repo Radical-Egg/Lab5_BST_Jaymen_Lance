@@ -323,7 +323,7 @@ bool BST<T>::insertFromNodeRecur(BSTNode<T>*& nodeStart, T data)
 		count++;
 		return true;
 	}
-	else if (data > nodeStart->data)
+	else if (data > nodeStart->data || data == nodeStart->data) 
 	{
 		if (nodeStart->right == nullptr)
 		{

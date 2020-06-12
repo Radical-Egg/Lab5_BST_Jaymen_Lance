@@ -9,7 +9,7 @@
 #include "Currency.h"
 
 
-const int SIZE = 25;
+const int SIZE = 10;
 
 using namespace std;
 
