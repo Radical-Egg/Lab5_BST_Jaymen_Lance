@@ -25,7 +25,7 @@ Return:	None.
 */
 void clear_screen()
 {
-    #ifdef WINDOWS
+    #ifdef _WIN32
         std::system("cls");
     #else
     std::system("clear");
