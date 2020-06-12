@@ -152,11 +152,14 @@ std::istream& operator >> (std::istream &input, Currency &currency)
 {
 	int noteValue;
 	int coinValue;
+	std::string note;
+	std::string coin;
 
 	while (!input.eof())
 	{
-		//input >> noteValue >> coinValue;
-		if(!(input >> noteValue >> coinValue)) // reading from file
+		input >> note >> noteValue >> coinValue >> coin;
+
+		if(input.fail()) // reading from file
 		{
 			std::ofstream log; // creating log file
 			log.open("log.txt", std::ios::app); // opening to append

@@ -95,7 +95,7 @@ int main()
     BST<Currency>* myBST = new BST<Currency>();
 
     cout << "Putting all currency object into Binary Search Tree" << endl;
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE - 1; i++)
     {
         myBST->insert(myCurrency[i]); // adding objects to BST
     }
@@ -149,7 +149,7 @@ int main()
                 break;
             // case B - Search data
             case 'B':
-                cout << "Search for some data in this BST: " << endl;
+                cout << "Search for some data in this BST\nInput(two integers, example: 24 25): " << endl;
                 // clear buffer
                 cin.ignore(numeric_limits<streamsize>::max(),'\n'); 
                 while (!(cin >> i >> j)) // while loop to ensure user puts in int values
@@ -182,7 +182,7 @@ int main()
                 break;
             // case C - Delete data
             case 'C':
-                cout << "Delete some data from this BST" << endl;
+                cout << "Delete some data from this BST\nInput(two integers, example: 24 25):" << endl;
                 // clear buffer
                 cin.ignore(numeric_limits<streamsize>::max(),'\n'); 
                 while (!(cin >> i >> j)) // while loop to ensure puts in int values
